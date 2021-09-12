@@ -8,9 +8,7 @@ import DateHeader from './DateHeader'
 import { Ionicons } from '@expo/vector-icons'
 import TextButton from './TextButton'
 import { connect } from 'react-redux'
-import { addEntry, AddEntry } from '../actions'
-import { connect } from 'react-redux'
-
+import { addEntry } from '../actions'
 
 function SubmitBtn ({onPress}) {
   return (
@@ -148,7 +146,7 @@ class AddEntry extends Component {
 function mapStateToProps (state) {
   const key = timeToString()
   return {
-    alreadyLogged = state[key] && typeof state[key].today === 'undefined'
+    alreadyLogged: state[key] && typeof state[key].today === 'undefined'
   }
 }
 

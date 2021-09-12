@@ -1,4 +1,5 @@
-import AsyncStorage from '@react-native-community/async-storage'
+// import AsyncStorage from '@react-native-community/async-storage'
+import { AsyncStorage } from 'react-native'
 import { CALENDAR_STORAGE_KEY } from './_calendar'
 
 export function submitEntry ({entry, key}) {
