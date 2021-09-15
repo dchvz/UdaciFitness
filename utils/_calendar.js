@@ -1,3 +1,4 @@
+import { AsyncStorage } from 'react-native'
 import { getMetricMetaInfo, timeToString } from './helpers'
 
 export const CALENDAR_STORAGE_KEY = 'UdaciFitness:calendar'
@@ -7,6 +8,7 @@ function getRandomNumber (max) {
 }
 
 function setDummyData () {
+  console.log('setting the dummy data')
   const { run, bike, swim, sleep, eat } = getMetricMetaInfo()
 
   let dummyData = {}
@@ -25,9 +27,7 @@ function setDummyData () {
         }
       : null
   }
-
   AsyncStorage.setItem(CALENDAR_STORAGE_KEY, JSON.stringify(dummyData))
-
   return dummyData
 }
 
