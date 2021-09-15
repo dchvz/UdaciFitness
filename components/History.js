@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { receiveEntries, addEntry } from '../actions'
 import { timeToString, getDailyReminder } from '../utils/helpers'
 import { fetchCalendarResults } from '../utils/api'
+import UdaciFitnessCalendar from 'udacifitness-calendar-fix'
 
 class History extends Component {
   componentDidMount () {
@@ -21,11 +22,34 @@ class History extends Component {
         console.log('the err is', err)
       })
   }
-  render () {
+  renderItem = ({ today, ...metrics }, formattedDate, key) => (
+    <View>
+      {
+        today
+        ? <Text>JSON.stringify(today)</Text>
+        : <Text>JSON.stringify(metrics)</Text>
+      }
+    </View>
+  )
+  renderEmptyDate () {
     return (
       <View>
-        <Text style={{marginTop: 50}}>{JSON.stringify(this.props)}</Text>
+        <Text>No data for this day</Text>
       </View>
+    )
+  }
+
+  render () {
+    const { entries } = this.props
+    console.log(entries)
+    console.log(this.renderItem)
+    console.log(this.renderEmptyDate)
+    return (
+      <UdaciFitnessCalendar
+        items={entries}
+        renderItem={this.renderItem}
+        renderEmptyDate={this.renderEmptyDate}
+      />
     )
   }
 }
