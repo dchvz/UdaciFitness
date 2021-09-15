@@ -11,6 +11,7 @@
     "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/slider": "^4.1.6",
     "expo": "~42.0.1",
+    "expo-app-loading": "^1.1.2",
     "expo-status-bar": "~1.0.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
@@ -18,7 +19,7 @@
     "react-native-web": "~0.13.12",
     "react-redux": "^7.2.5",
     "redux": "^4.1.1",
-    "udacifitness-calendar": "^11.0.0",
+    "udacifitness-calendar": "github:ftrevo/react-native-calendars#master",
     "udacifitness-calendar-fix": "^10.1.0"
   },
   "devDependencies": {
