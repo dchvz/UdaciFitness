@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, View, Text, StatusBar } from 'react-native';
 import AddEntry from './components/AddEntry';
 import History from './components/History';
@@ -13,6 +13,9 @@ import Ionicons from '@expo/vector-icons/Ionicons'
 import Constants from 'expo-constants'
 import { purple, white } from './utils/colors'
 import EntryDetail from './components/EntryDetail'
+import Live from './components/Live'
+import { setLocalNotification } from './utils/helpers'
+
 
 const Stack = createStackNavigator();
 
@@ -59,6 +62,8 @@ function Tabs () {
             iconName ='ios-bookmarks'
           } else if (route.name === 'Add entry') {
             iconName = 'ios-add'
+          } else {
+            iconName = 'ios-speedometer'
           }
           return <Ionicons name={iconName} size={size} color={color} />;
         },
@@ -68,6 +73,7 @@ function Tabs () {
     >
       <Tab.Screen name="Home" component={History} />
       <Tab.Screen name="Add entry" component={AddEntry} />
+      <Tab.Screen name="Live" component={Live} />
     </Tab.Navigator>
   )
 }
@@ -80,14 +86,18 @@ function UdaciStatusBar ({backgroundColor, ...props}) {
   )
 }
 
-export default function App() {
-  return (
-    <Provider store={createStore(reducer)}>
-      {/* <Tabs/> */}
-      <UdaciStatusBar backgroundColor={purple} barStyle="light-content" />
-      <NavigationContainer>
-        <Stacks />
-      </NavigationContainer>
-    </Provider>
-  );
+export default class App extends Component {
+  componentDidMount() {
+    setLocalNotification()
+  }
+  render () {
+    return (
+      <Provider store={createStore(reducer)}>
+        <UdaciStatusBar backgroundColor={purple} barStyle="light-content" />
+        <NavigationContainer>
+          <Stacks />
+        </NavigationContainer>
+      </Provider>
+    );
+  }
 }
